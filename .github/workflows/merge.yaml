@@ -87,13 +87,13 @@ jobs:
       run: cd release && git rm ${{ steps.update.outputs.deleted_files }}
       if: github.event_name == 'push' && steps.update.outputs.deleted == 'true'
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - uses: stefanzweifel/git-auto-commit-action@v5
       with:
         repository: 'release'
         commit_message: Releasing ${{ steps.update.outputs.updated_files }} ${{ steps.update.outputs.deleted_files }}
       if: github.event_name == 'push' && (steps.update.outputs.updated == 'true' || steps.update.outputs.deleted == 'true')
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - uses: stefanzweifel/git-auto-commit-action@v5
       with:
         repository: 'release'
         commit_message: ${{ github.event.inputs.commit_message }}
